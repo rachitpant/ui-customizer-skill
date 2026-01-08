@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { Agent } from '@anthropic-ai/agent-sdk';
+import { Agent } from '@anthropic-ai/claude-agent-sdk';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';

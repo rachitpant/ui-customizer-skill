@@ -8,6 +8,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@anthropic-ai/agent-sdk": "^0.8.1"
+    "@anthropic-ai/claude-agent-sdk": "^0.2.1"
   }
 }
