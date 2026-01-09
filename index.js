@@ -71,13 +71,19 @@ async function main() {
     console.error("❌ Error: Please provide UI customization instructions");
     console.error("\nUsage: npm start \"<UI changes to make>\"");
     console.error("Example: npm start \"Make the header blue with white text\"");
+    console.error("\nFor local testing, set DANDYBREEZE_PATH environment variable:");
+    console.error("Example: DANDYBREEZE_PATH=~/code/dandybreeze npm start \"Make the header blue\"");
     process.exit(1);
   }
+
+  // Allow overriding path for local testing
+  const dandybreezePath = process.env.DANDYBREEZE_PATH || '/workspace/dandybreeze';
 
   console.log("=".repeat(60));
   console.log("UI Customizer Agent");
   console.log("=".repeat(60));
-  console.log(`\nCustomization Request: ${uiChanges}\n`);
+  console.log(`\nCustomization Request: ${uiChanges}`);
+  console.log(`Dandybreeze Location: ${dandybreezePath}\n`);
 
   try {
     // Run the agent using the query API
@@ -85,7 +91,7 @@ async function main() {
 You are customizing the Dandybreeze UI based on this request: ${uiChanges}
 
 Dandybreeze is a Nuxt.js + NuxtHub application for farmers to accept weekly orders.
-The application is located at /workspace/dandybreeze
+The application is located at ${dandybreezePath}
 
 CRITICAL RULES:
 - ONLY modify UI/styling - NEVER change functionality, API routes, or business logic
@@ -94,12 +100,12 @@ CRITICAL RULES:
 
 WORKFLOW:
 1. First, explore the project structure to understand the codebase
-   - Use Glob with path parameter: /workspace/dandybreeze
-   - Example: Glob pattern="**/*.vue" path="/workspace/dandybreeze"
-2. Use Read to examine the files you need to modify (use full paths starting with /workspace/dandybreeze)
+   - Use Glob with path parameter: ${dandybreezePath}
+   - Example: Glob pattern="**/*.vue" path="${dandybreezePath}"
+2. Use Read to examine the files you need to modify (use full paths starting with ${dandybreezePath})
 3. Use Edit to make the UI changes based on the user's request
 4. After all changes are complete, use Bash to deploy:
-   - Run: cd /workspace/dandybreeze && npx wrangler deploy
+   - Run: cd ${dandybreezePath} && npx wrangler deploy
    - Capture the deployment URL from the output
 5. Report the deployment URL to the user
 
