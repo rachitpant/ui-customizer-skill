@@ -85,7 +85,7 @@ async function main() {
 You are customizing the Dandybreeze UI based on this request: ${uiChanges}
 
 Dandybreeze is a Nuxt.js + NuxtHub application for farmers to accept weekly orders.
-The application is located in the current directory.
+The application is located at /workspace/dandybreeze
 
 CRITICAL RULES:
 - ONLY modify UI/styling - NEVER change functionality, API routes, or business logic
@@ -94,13 +94,14 @@ CRITICAL RULES:
 
 WORKFLOW:
 1. First, explore the project structure to understand the codebase
-2. Use Glob to find Vue components, CSS files, and Tailwind config
-3. Use Read to examine the files you need to modify
-4. Use Edit to make the UI changes based on the user's request
-5. After all changes are complete, use Bash to deploy:
-   - Run: cd /workspace && npx wrangler deploy
+   - Use Glob with path parameter: /workspace/dandybreeze
+   - Example: Glob pattern="**/*.vue" path="/workspace/dandybreeze"
+2. Use Read to examine the files you need to modify (use full paths starting with /workspace/dandybreeze)
+3. Use Edit to make the UI changes based on the user's request
+4. After all changes are complete, use Bash to deploy:
+   - Run: cd /workspace/dandybreeze && npx wrangler deploy
    - Capture the deployment URL from the output
-6. Report the deployment URL to the user
+5. Report the deployment URL to the user
 
 DEPLOYMENT NOTES:
 - The deployment command should output a URL like: https://dandybreeze-xyz.workers.dev
